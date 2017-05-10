@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<package name="jwen" extends="struts-default">
+
+		<!-- 定义了拦截器 第一种方式 -->
+		<interceptors>
+			<interceptor name="MyInterceptor"
+				class="com.jwen.struts2.interceptor.MyInterceptor"/>
+			<interceptor name="MySecoundInterceptor"
+				class="com.jwen.struts2.interceptor.MySecoundInterceptor"/>	
+		</interceptors>
+
+
+		<!-- 配置Action -->
+		<action name="hello" class="com.jwen.struts2.action.HelloAction"
+			method="sayHello">
+			<!-- 配置跳转的页面，路径的写法：在Struts2框架中，不管是转发还是重定向，都不用写项目名 -->
+			<result name="success" type="redirectAction">register</result>
+		</action>
+		
+		<action name="userAction" class="com.jwen.struts2.action.HelloAction" method="doNothing">
+			<!-- 只要是引用自己的拦截器，默认栈的拦截器就不执行了，必须要手动引入默认栈 -->
+			<interceptor-ref name="MyInterceptor" />
+			<interceptor-ref name="MySecoundInterceptor" />
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="register">
+			<!-- 配置跳转的页面，路径的写法：在Struts2框架中，不管是转发还是重定向，都不用写项目名 -->
+			<result type="dispatcher">/register/register.jsp</result>
+		</action>
+
+		<action name="Regist" class="com.jwen.struts2.action.RegistAction">
+			<result type="dispatcher">/register/registerSucces.jsp</result>
+		</action>
+
+
+		<action name="validate" class="com.jwen.struts2.action.ValidateAction">
+			<!-- 配置跳转的页面，路径的写法：在Struts2框架中，不管是转发还是重定向，都不用写项目名 -->
+			<result name="success" type="dispatcher">/register/registerSucces.jsp
+			</result>
+		</action>
+
+		<action name="order_*" class="com.jwen.struts2.action.OrderAction"
+			method="{1}">
+			<result name="add">/order/addOrder.jsp</result>
+			<result name="delete">/order/deleteOrder.jsp</result>
+		</action>
+
+	</package>
+</struts>
