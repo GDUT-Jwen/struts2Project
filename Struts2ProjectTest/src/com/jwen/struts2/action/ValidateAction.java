@@ -4,13 +4,21 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 
+import com.jwen.struts2.user.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
-public class ValidateAction extends ActionSupport {
+public class ValidateAction extends ActionSupport implements ModelDriven<User>{
 
 	private static final long serialVersionUID = -639631402949171318L;
 
+	private User user = new User();
+
+	public User getModel() {
+		return user;
+	}
+	
 	public void getUserInfo() {
 		ActionContext context = ActionContext.getContext();
 		// 获取到请求的参数，封装所有请求的参数
@@ -34,8 +42,14 @@ public class ValidateAction extends ActionSupport {
 		context.getSession().put("msg", "小苍");
 		context.getApplication().put("msg", "小泽");
 	}
+	
+	public String getUser() {
+		System.out.println(user);
+		return NONE;
+	}
 
 	public String execute() throws Exception {
+		System.out.println(user);
 		getUserInfo();
 		return SUCCESS;
 	}

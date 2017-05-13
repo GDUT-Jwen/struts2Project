@@ -8,7 +8,7 @@
 </head>
 <body>
 	  <h3>注册页面</h3>
-  <form action="${ pageContext.request.contextPath }/Regist.action" method="post">
+  <form action="${ pageContext.request.contextPath }/validate.action" method="post">
       姓名:<input type="text" name="username" /><br/>
       密码:<input type="password" name="password" /><br/>
       年龄： <input type="text" name="age" /><br/>   

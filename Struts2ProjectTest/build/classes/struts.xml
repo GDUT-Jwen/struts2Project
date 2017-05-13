@@ -36,10 +36,6 @@
 			<result type="dispatcher">/register/register.jsp</result>
 		</action>
 
-		<action name="Regist" class="com.jwen.struts2.action.RegistAction">
-			<result type="dispatcher">/register/registerSucces.jsp</result>
-		</action>
-
 
 		<action name="validate" class="com.jwen.struts2.action.ValidateAction">
 			<!-- 配置跳转的页面，路径的写法：在Struts2框架中，不管是转发还是重定向，都不用写项目名 -->
