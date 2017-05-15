@@ -13,6 +13,13 @@ import org.apache.struts2.convention.annotation.Results;
 })
 public class User extends ActionSupport {
 
+    public User() {}
+
+    public User(String name) {
+        this.username = name ;
+    }
+
+
     @Action(value = "/userinfo")
     public String execute() {
         return SUCCESS;

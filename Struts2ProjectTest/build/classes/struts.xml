@@ -49,5 +49,18 @@
 			<result name="delete">/order/deleteOrder.jsp</result>
 		</action>
 
+		<!--测试Merged 标签 -->
+		<action name="employee"
+				class="com.jwen.struts2.user.Employee"
+				method="execute">
+			<result name="success">/employee/employee.jsp</result>
+		</action>
+
+		<!--测试文件上传-->
+		<action name="uploadDemo" class="com.jwen.struts2.action.FileUpload">
+			<result name="success">/result/uploadSuccess.jsp</result>
+			<result name="error">/result/error.jsp</result>
+		</action>
+
 	</package>
 </struts>
