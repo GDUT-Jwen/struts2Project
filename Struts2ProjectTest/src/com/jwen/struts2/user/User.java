@@ -1,32 +1,51 @@
 package com.jwen.struts2.user;
 
-public class User {
-	public String getUsername() {
-		return username;
-	}
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.IntRangeFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+@Results({
+        @Result(name = "success", location = "/register/validateSuc.jsp"),
+        @Result(name = "input", location = "/register/register.jsp")
+})
+public class User extends ActionSupport {
 
-	public String getPassword() {
-		return password;
-	}
+    @Action(value = "/userinfo")
+    public String execute() {
+        return SUCCESS;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    @RequiredFieldValidator( message = "The name is required" )
+    public String getUsername() {
+        return username;
+    }
 
-	public Integer getAge() {
-		return age;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	private String username;
-	private String password;
-	private Integer age;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @IntRangeFieldValidator(message = "Age must be in between 28 and 65",min = "29", max = "65")
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    private String username;
+    private String password;
+    private Integer age;
 
 }
