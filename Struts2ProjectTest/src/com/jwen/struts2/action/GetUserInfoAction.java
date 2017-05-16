@@ -1,11 +1,11 @@
 package com.jwen.struts2.action;
 
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+
 import com.jwen.struts2.user.User;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
 
 @Result(name = "success", location = "/register/validateSuc.jsp")
 public class GetUserInfoAction extends ActionSupport implements ModelDriven<User> {
