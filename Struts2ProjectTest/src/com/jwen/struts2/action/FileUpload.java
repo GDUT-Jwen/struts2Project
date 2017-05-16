@@ -4,46 +4,33 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
  * Created by Jw on 2017/5/15.
+ *
  */
 
 
 public class FileUpload extends ActionSupport{
 
     private File myFile;
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    private String fileName;
-    private String fileType;
+    private String myFileFileName;
+    private String myFileContentType;
     //临时文件夹
     private String destPath;
 
-    public String excute() {
+    public String execute() {
 
         destPath = "E:/work/tempFile";
         try{
             System.out.println("Src File name: " + myFile);
-            System.out.println("Dst File name: " + fileName);
+            System.out.println("Dst File name: " + myFileFileName);
 
-            File destFile  = new File(destPath, fileName);
+            File destFile  = new File(destPath, myFileFileName);
             FileUtils.copyFile(myFile, destFile);
 
-/*
-            FileInputStream fi = new FileInputStream();
-*/
-
-
+            destFile.createNewFile();
 
         }catch(IOException e){
             e.printStackTrace();
@@ -53,6 +40,25 @@ public class FileUpload extends ActionSupport{
         }
 
         return  SUCCESS;
+    }
+
+    public File getMyFile() {
+        return myFile;
+    }
+    public void setMyFile(File myFile) {
+        this.myFile = myFile;
+    }
+    public String getMyFileContentType() {
+        return myFileContentType;
+    }
+    public void setMyFileContentType(String myFileContentType) {
+        this.myFileContentType = myFileContentType;
+    }
+    public String getMyFileFileName() {
+        return myFileFileName;
+    }
+    public void setMyFileFileName(String myFileFileName) {
+        this.myFileFileName = myFileFileName;
     }
 
 }
