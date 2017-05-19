@@ -15,5 +15,9 @@
       <s:textfield name="age" label="年龄" size="20"/><br/>
       <s:submit name="submit" label="注册" align="center" />
   </s:form>
+
+  <s:debug></s:debug>
+  <s:property value="errors.age[0]"/>
+
 </body>
 </html>

@@ -6,6 +6,7 @@
 
 <struts>
 	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<constant name="struts.i18n.encoding" value="GBK"></constant>
 	<package name="jwen" extends="struts-default">
 
 		<!-- 定义了拦截器 第一种方式 -->

@@ -3,13 +3,15 @@ package com.jwen.struts2.user;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.IntRangeFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
 @Results({
         @Result(name = "success", location = "/register/validateSuc.jsp"),
-        @Result(name = "input", location = "/register/register.jsp")
+        @Result(name = "error", location = "/register/register.jsp")
 })
 public class User extends ActionSupport {
 
@@ -22,10 +24,18 @@ public class User extends ActionSupport {
 
     @Action(value = "/userinfo")
     public String execute() {
+
+        if(StringUtils.isEmpty(username)) {
+            this.addFieldError("username","name is required");
+            return ERROR;
+        }
+        if(age < 29 || age > 65) {
+            this.addFieldError("age","Age must be in between 28 and 65");
+            return  ERROR;
+        }
         return SUCCESS;
     }
 
-    @RequiredFieldValidator( message = "The name is required" )
     public String getUsername() {
         return username;
     }
@@ -42,7 +52,6 @@ public class User extends ActionSupport {
         this.password = password;
     }
 
-    @IntRangeFieldValidator(message = "Age must be in between 28 and 65",min = "29", max = "65")
     public Integer getAge() {
         return age;
     }
